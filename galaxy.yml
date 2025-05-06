@@ -1,0 +1,11 @@
+namespace: iti
+name: jump
+version: 1.0.0
+readme: README.md
+authors:
+  - Daniel Farag
+description: A collection to conigure bastion server
+license: MIT
+tags: [custom, plugin]
+dependencies: {}
+repository: https://github.com/DanielFarag/jump-ansible-plugin

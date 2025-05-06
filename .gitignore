@@ -1,0 +1,5 @@
+task
+*tfstate*
+.terraform
+task
+*.pem
