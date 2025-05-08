@@ -46,6 +46,14 @@ Host {ip}
     ProxyJump bastion
 
 """
+
+    with open(private_path, 'a') as f:
+        f.write(content)
+
+
+
+    for ip in ip_list:
+
         known_hosts = f"""
         if ! ssh-keygen -F "{ip}" > /dev/null; then
             ssh-keyscan -H "{ip}" >> {os.path.expanduser("~/.ssh/known_hosts")}
@@ -54,8 +62,6 @@ Host {ip}
 
         subprocess.run(known_hosts, shell=True, check=True)
 
-    with open(private_path, 'a') as f:
-        f.write(content)
 
     module.exit_json(
         changed=True,
