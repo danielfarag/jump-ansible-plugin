@@ -1,5 +1,4 @@
 import os
-import subprocess
 from pathlib import Path
 from ansible.module_utils.basic import AnsibleModule
 
@@ -35,8 +34,7 @@ Host bastion
 
 """
     for ip in ip_list:
-
-
+        
         if f"Host {ip}" not in lines:
             content += f"""
 Host {ip}
@@ -49,19 +47,6 @@ Host {ip}
 
     with open(private_path, 'a') as f:
         f.write(content)
-
-
-
-    for ip in ip_list:
-
-        known_hosts = f"""
-        if ! ssh-keygen -F "{ip}" > /dev/null; then
-            ssh-keyscan -H "{ip}" >> {os.path.expanduser("~/.ssh/known_hosts")}
-        fi
-        """
-
-        subprocess.run(known_hosts, shell=True, check=True)
-
 
     module.exit_json(
         changed=True,
